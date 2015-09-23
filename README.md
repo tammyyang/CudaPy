@@ -218,11 +218,11 @@ Here is the Mandelbrot image:
 ![Mandel](http://418.oulgen.com/img/mandel.png)
 
 
-# Building and Installation
+# Building and Installing
 
 1. The suggested version of ghc is 7.8.3, you can find it from [here](https://www.haskell.org/ghc/download).
 2. Make sure the external dependencies are satisfied
-⋅⋅* Ubuntu 14.04 and later versions
+ * For Ubuntu 14.04 and later versions
 ```{r, engine='bash', count_lines}
 sudo apt-get install cabal-install happy alex haskell-platform ghc-dynamic python-setuptools
 ```
