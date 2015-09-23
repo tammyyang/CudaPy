@@ -218,6 +218,29 @@ Here is the Mandelbrot image:
 ![Mandel](http://418.oulgen.com/img/mandel.png)
 
 
+# Building and Installation
+
+1. The suggested version of ghc is 7.8.3, you can find it from [here](https://www.haskell.org/ghc/download).
+2. Make sure the external dependencies are satisfied
+⋅⋅* Ubuntu 14.04 and later versions
+```{r, engine='bash', count_lines}
+sudo apt-get install cabal-install happy alex haskell-platform ghc-dynamic python-setuptools
+```
+3. Make sure the dependencies are installed properly using [cabal](https://wiki.haskell.org/Cabal-Install)
+```{r, engine='bash', count_lines}
+cd py2cuda
+cabal install --only-dependencies
+cd -
+```
+4. Build it!
+5. The resulting Python egg file will be placed in bin/. Install them properly or add the following three lines to your Python codes if you just want to make some test:
+```python
+import sys
+sys.path.append("$PATH_OF_CudaPy/bin/cudapy.egg")
+import cudapy
+```
+
+
 # Related Work
 
 We got our inspiration for CudaPy form a system called VecPy. VecPy was last year's winner at [15-418 Parallelism competition](http://15418.courses.cs.cmu.edu/spring2014/competition). As in its creator's words, VecPy "leverages multi-threading and SIMD instructions on modern x86 processors." CudaPy goes in a different direction and adds GPU level parallelism. We also have a less strict type system: VecPy compiles code for a single type like `int` or `float` where as CudaPy kernels can take an arbitrary signature of base types (these include `void`, `bool`, `int`, `float`, `double`, and possibly nested arrays on these types). Finally, CudaPy had some extra challenges VecPy did not have such as handling separate device and host memory, and interfacing with the CUDA runtime.
