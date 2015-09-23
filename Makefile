@@ -5,11 +5,11 @@ all: translator pylib
 
 translator: cabal_hack
 	# Build
-	cd ${translator} && cabal configure --enable-shared && cabal build
+	cd ${translator} && cabal configure --enable-shared && cabal build -v2
+
 	# Copy binary files
 	mkdir -p bin
-	# cp ${translator}/dist/build/libHS${translator}*.a bin/${translator}.a
-	cp ${translator}/dist/build/libHS${translator}*.dylib bin/${translator}.so
+	cp ${translator}/dist/build/libHS${translator}*.so bin/${translator}.so
 
 cabal_hack:
 	# We have to manually link the runtime library in cabal for some reason.
